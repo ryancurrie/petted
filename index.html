@@ -7,6 +7,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
   <title>Petted VetCare</title>
 
 <!-- Segment Script -->
@@ -19,14 +20,24 @@
 
 </head>
 <body>
-  <div class="container">
-    <nav>
-      <div class="nav-wrapper">
-        
-      </div>
-    </nav>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <nav class="white">
+    <div class="nav-wrapper container white">
+      <a href="#" id="logo-container" class="brand-logo center">
+        <img class="logo-img" src="images/petted-logo.png" alt="petted">
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" class="nav-link">Book Visit</a></li>
+        <li><a href="#" class="nav-link">Log In</a></li>
+      </ul>
+      <ul id="mobile-demo" class="side-nav">
+        <li><a href="#" class="nav-link">Book Visit</a></li>
+        <li><a href="#" class="nav-link">Log In</a></li>
+      </ul>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons nav-icon">menu</i></a>
+    </div>
+  </nav>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="js/init.js"></script>
 </body>
 </html>
