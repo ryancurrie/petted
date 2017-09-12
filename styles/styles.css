@@ -7,3 +7,28 @@
 .nav-icon {
   color: #3eb8c3 !important;
 }
+
+#hero-section {
+  background: url('../images/cat-on-bed-1920w.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#hero-text {
+  font-weight: 600;
+}
+
+.hero-search-field {
+  padding-left: 10px !important;
+  border-radius: 2px !important;
+  background: #fff !important;
+  line-height: 2rem !important;
+  font-size: 1.5rem !important;
+}
+
+#hero-search-button {
+  margin: 15px 0px 20px 10px !important;
+  height: 3rem;
+}
