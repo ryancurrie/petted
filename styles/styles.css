@@ -18,7 +18,7 @@ li a.nav-icon,
 }
 
 #hero-section-content {
-  padding: 4em 0;
+  margin: 8em 0;
 }
 
 #hero-text {
@@ -34,6 +34,25 @@ input[type=text].hero-search-field {
 }
 
 button#hero-search-button {
-  margin: 15px 0px 20px 10px;
+  margin: 15px 0 20px 10px;
   height: 3rem;
+}
+
+#features {
+  margin: 8em 0;
+}
+
+div.feature-icon {
+  padding: 15px;
+  height: 15em;
+}
+
+div.feature-icon img {
+  max-height: 12em;
+}
+
+@media only screen and (min-width: 600px) {
+  .feature-block p {
+    font-size: 1.4em;
+  }
 }
