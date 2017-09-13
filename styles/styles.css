@@ -17,11 +17,13 @@ li a.nav-icon,
   background-size: cover;
 }
 
-#hero-section-content {
+#hero-section-content,
+#features,
+#our-vets {
   margin: 8em 0;
 }
 
-#hero-text {
+.heavy-text {
   font-weight: 600;
 }
 
@@ -38,10 +40,6 @@ button#hero-search-button {
   height: 3rem;
 }
 
-#features {
-  margin: 8em 0;
-}
-
 div.feature-icon {
   padding: 15px;
   height: 15em;
@@ -55,4 +53,11 @@ div.feature-icon img {
   .feature-block p {
     font-size: 1.4em;
   }
+}
+
+.vet-card {
+}
+
+#our-vets img.vet-card-image {
+  max-width: 10em;
 }
