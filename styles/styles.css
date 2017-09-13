@@ -55,9 +55,18 @@ div.feature-icon img {
   }
 }
 
-.vet-card {
+#our-vets img.vet-card-image {
+  max-width: 12em;
 }
 
-#our-vets img.vet-card-image {
-  max-width: 10em;
+.modal-content .modal-image-container {
+  float: right;
+}
+
+.modal-content .vet-modal-image {
+  max-width: 15em;
+}
+
+.modal .vet-modal-footer {
+  clear: both;
 }
