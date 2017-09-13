@@ -4,10 +4,10 @@ function search(zip) {
   for (var i = 0; i < validZips.length; i++) {
     if (zip === validZips[i]) {
       window.location.href = 'doctors.html'
+      return
     }
     else {
-      return 'Fail'
-      /* window.location.href = 'sorry.html' */
+      window.location.href = 'sorry.html'
     }
   }
 }
