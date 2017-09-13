@@ -1,11 +1,12 @@
-.logo-img {
-  max-height: 64px !important;
-  padding: 15px 0 !important;
+#logo-container img {
+  max-height: 64px;
+  padding: 15px 0;
 }
 
-.nav-link,
-.nav-icon {
-  color: #3eb8c3 !important;
+li a.nav-link,
+li a.nav-icon,
+.nav-wrapper i {
+  color: #3eb8c3;
 }
 
 #hero-section {
@@ -24,15 +25,15 @@
   font-weight: 600;
 }
 
-.hero-search-field {
-  padding-left: 10px !important;
-  border-radius: 2px !important;
-  background: #fff !important;
-  line-height: 2rem !important;
-  font-size: 1.5rem !important;
+input[type=text].hero-search-field {
+  padding-left: 10px;
+  border-radius: 2px;
+  background: #fff;
+  line-height: 2rem;
+  font-size: 1.5rem;
 }
 
-#hero-search-button {
-  margin: 15px 0px 20px 10px !important;
+button#hero-search-button {
+  margin: 15px 0px 20px 10px;
   height: 3rem;
 }
