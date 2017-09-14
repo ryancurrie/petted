@@ -145,3 +145,9 @@ function modalPopulate(id) {
     }
   }
 }
+
+function modalCreate() {
+  var $modal = document.createElement('div')
+  $modal.setAttribute('id', 'modal2')
+  $modal.setAttribute('class', 'modal')
+}

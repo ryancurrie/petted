@@ -55,6 +55,10 @@ div.feature-icon img {
   }
 }
 
+.vet-card h6 {
+  color: #3eb8c3;
+}
+
 #our-vets img.vet-carousel-image {
   width: 12em;
 }
@@ -93,4 +97,16 @@ div.feature-icon img {
 
 .modal .vet-modal-footer {
   clear: both;
+}
+
+#footer {
+  margin-top: 8em;
+}
+
+.page-footer {
+  background-color: #3eb8c3;
+}
+
+#footer-contact li a {
+  color: #fff;
 }
