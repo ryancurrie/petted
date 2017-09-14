@@ -69,14 +69,40 @@ div.feature-icon img {
   background-size: cover;
 }
 
-#testimonial-text {
+#testimonial-container {
+  padding: 1em;
   border-radius: 2px;
   color: black;
-  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#testimonial-text {
+  float: left;
+  width: 66%;
+}
+
+@media only screen and (max-width: 360px) {
+  #testimonial-text {
+    width: 100%;
+  }
+}
+
+.big-quote {
+  font-size: 1.2em;
 }
 
 #testimonial-user {
   float: right;
+  margin-top: 20%;
+  text-align: right;
+}
+
+@media only screen and (max-width: 360px) {
+  #testimonial-user {
+    float: none;
+    margin-top: 50%;
+    text-align: center;
+  }
 }
 
 #testimonial-image {
