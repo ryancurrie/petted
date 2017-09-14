@@ -113,41 +113,29 @@ var vets = [
 
 var $vetCarousel = document.querySelector('#vet-carousel')
 
-$vetCarousel.addEventListener('click', function(event){
-  console.log(event.target.dataset.id)
-  modalPopulate(event.target.dataset.id)
-})
-
-function modalPopulate(id) {
-  for (var i = 0; i < vets.length; i++) {
-    if (id === vets[i].id) {
-      var $vetFirstName = document.querySelector('#vet-first-name')
-      var $vetLastName = document.querySelector('#vet-last-name')
-      var $vetImage = document.querySelector('#vet-image')
-      var $vetBackground = document.querySelector('#vet-background')
-      var $vetSchool = document.querySelector('#vet-school')
-      var $vetUndergraduate = document.querySelector('#vet-undergraduate')
-      var $vetPetName1 = document.querySelector('#vet-pet-name-1')
-      var $vetPetDesc1 = document.querySelector('#vet-pet-desc-1')
-      var $vetPetName2 = document.querySelector('#vet-pet-name-2')
-      var $vetPetDesc2 = document.querySelector('#vet-pet-desc-2')
-
-      $vetFirstName.textContent = vets[i].firstName
-      $vetLastName.textContent = vets[i].lastName
-      $vetImage.setAttribute('src', vets[i].image)
-      $vetBackground.textContent = vets[i].background
-      $vetSchool.textContent = vets[i].vetSchool
-      $vetUndergraduate.textContent = vets[i].undergraduate
-      $vetPetName1.textContent = vets[i].pets[0].name
-      $vetPetDesc1.textContent = vets[i].pets[0].description
-      $vetPetName2.textContent = vets[i].pets[1].name
-      $vetPetDesc2.textContent = vets[i].pets[1].description
-    }
-  }
-}
-
-function modalCreate() {
+function modalCreate(vet) {
   var $modal = document.createElement('div')
-  $modal.setAttribute('id', 'modal2')
-  $modal.setAttribute('class', 'modal')
-}
+  var $modalImageContainer = document.createElement('div')
+  var $vetImage = document.createElement('img')
+  var $modalContentContainer = document.createElement('div')
+  var $vetName = document.createElement('h5')
+  var $background = document.createElement('h6')
+  var $vetBackground = document.createElement('p')
+  var $education = document.createElement('h6')
+  var $vetSchool = document.createElement('p')
+  var $undergrad = document.createElement('p')
+  var $pets = document.createElement('h6')
+
+
+
+  $modal.classList.add('modal-content')
+  $modalImageContainer.classList.add('modal-image-container')
+  $vetImage.setAttribute('src', '#')
+  $modalContentContainer.classList.add('modal-content-container')
+  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+  $background.textContent = 'Background'
+  $vetBackground.textContent = vet.background
+  $education.textContent = 'Education'
+  $vetSchool.textContent = vet.vetSchool
+  $undergrad.textContent = vet.undergraduate
+  $pets.textContent = 'Pets'
