@@ -55,8 +55,8 @@ div.feature-icon img {
   }
 }
 
-#our-vets img.vet-card-image {
-  max-width: 12em;
+#our-vets img.vet-carousel-image {
+  width: 12em;
 }
 
 .modal-image-container {
@@ -64,11 +64,24 @@ div.feature-icon img {
   margin: 2em;
 }
 
-.modal-content .vet-modal-image {
+@media only screen and (max-width: 360px) {
+  .modal-image-container {
+    float: none;
+    margin: 0;
+  }
+}
+
+#vet-image {
   max-width: 15em;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 360px) {
+  #vet-image {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
   .modal-content-container {
     float: left;
   }
