@@ -106,44 +106,46 @@
         <h2 class="center heavy-text">Our Veterinarians</h2>
       </div>
       <div class="row">
-        <div class="carousel">
+        <div id="vet-carousel" class="carousel">
           <div class="carousel-item">
             <a class="modal-trigger" href="#modal1">
               <div class="vet-card center">
-                <img class="vet-card-image" src="images/sabrina-castro.png" />
-                <h6>Dr. Sabrina Castro</h6>
+                <img data-id="1" class="vet-card-image" src="images/sabrina-castro.png" />
+                <h6 data-id="1">Dr. Sabrina Castro</h6>
               </div>
             </a>
           </div>
           <div class="carousel-item">
-            <div class="vet-card center">
-              <img class="vet-card-image" src="images/benjamin-rosnick.png" />
-              <h6>Dr. Benjamin Rosnick</h6>
-            </div>
+            <a class="modal-trigger" href="#modal1">
+              <div class="vet-card center">
+                <img data-id="2" class="vet-card-image" src="images/benjamin-rosnick.png" />
+                <h6 data-id="2">Dr. Benjamin Rosnick</h6>
+              </div>
+            </a>
           </div>
           <div class="carousel-item">
-            <div class="vet-card center">
-              <img class="vet-card-image" src="images/sydney-pokard.png" />
-              <h6>Dr. Sydney Pockard</h6>
-            </div>
+            <a class="modal-trigger" href="#modal1">
+              <div class="vet-card center">
+                <img data-id="5" class="vet-card-image" src="images/sydney-pokard.png" />
+                <h6 data-id="5">Dr. Sydney Pokard</h6>
+              </div>
+            </a>
           </div>
           <div class="carousel-item">
-            <div class="vet-card center">
-              <img class="vet-card-image" src="images/cecile-meracdo.png" />
-              <h6>Dr. Cecile Mercado</h6>
-            </div>
+            <a class="modal-trigger" href="#modal1">
+              <div class="vet-card center">
+                <img data-id="3" class="vet-card-image" src="images/cecile-meracdo.png" />
+                <h6 data-id="3">Dr. Cecile Mercado</h6>
+              </div>
+            </a>
           </div>
           <div class="carousel-item">
-            <div class="vet-card center">
-              <img class="vet-card-image" src="images/gallet-khouban.png" />
-              <h6>Dr. Gallet Khouban</h6>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="vet-card center">
-              <img class="vet-card-image" src="images/tori-countner.png" />
-              <h6>Dr. Tori Countner</h6>
-            </div>
+            <a class="modal-trigger" href="#modal1">
+              <div class="vet-card center">
+                <img data-id="4" class="vet-card-image" src="images/gallet-khouban.png" />
+                <h6 data-id="4">Dr. Galleet Khouban</h6>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -153,15 +155,26 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <div class="modal-image-container">
-        <img class="vet-modal-image" src="images/sabrina-castro.png" />
+        <img id="vet-image" class="vet-modal-image responsive-image" src="#" />
       </div>
-      <h4>Dr. Sabrina Castro</h4>
-      <p>A bunch of text</p>
+      <div class="modal-content-container">
+        <h5>Dr. <span id="vet-first-name"></span> <span id="vet-last-name"></span></h5>
+        <h6 class="modal-sub-header">Background</h6>
+        <p id="vet-background"></p>
+        <h6 class="modal-sub-header">Education</h6>
+        <p><strong>Vet School</strong>: <span id="vet-school"></span></p>
+        <p><strong>Undergraduate</strong>: <span id="vet-undergraduate"></span></p>
+        <h6 class="modal-sub-header">Pets</h6>
+        <p><strong><span id="vet-pet-name-1"></span></strong>: <span id="vet-pet-desc-1"></span><br />
+          <strong><span id="vet-pet-name-2"></span></strong>: <span id="vet-pet-desc-2"></span>
+        </p>
+      </div>
     </div>
     <div class="modal-footer vet-modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
+
   <!-- Scripts -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

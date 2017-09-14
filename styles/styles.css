@@ -59,12 +59,23 @@ div.feature-icon img {
   max-width: 12em;
 }
 
-.modal-content .modal-image-container {
+.modal-image-container {
   float: right;
+  margin: 2em;
 }
 
 .modal-content .vet-modal-image {
   max-width: 15em;
+}
+
+@media only screen and (max-width: 320px) {
+  .modal-content-container {
+    float: left;
+  }
+}
+
+.modal-sub-header {
+  font-size: 1.25em;
 }
 
 .modal .vet-modal-footer {
