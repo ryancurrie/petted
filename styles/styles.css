@@ -40,6 +40,11 @@ button#hero-search-button {
   height: 3rem;
 }
 
+.btn,
+.btn-large {
+  background-color: #3eb8c3;
+}
+
 div.feature-icon {
   padding: 15px;
   height: 15em;
@@ -53,6 +58,29 @@ div.feature-icon img {
   .feature-block p {
     font-size: 1.4em;
   }
+}
+
+#testimonial {
+  padding: 11em 0;
+  background: url('../images/brown-dog.jpg') no-repeat center top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#testimonial-text {
+  border-radius: 2px;
+  color: black;
+  opacity: 0.9;
+}
+
+#testimonial-user {
+  float: right;
+}
+
+#testimonial-image {
+  max-width: 6em;
 }
 
 .vet-card h6 {
