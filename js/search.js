@@ -114,11 +114,9 @@ var vets = [
 var $vetCarousel = document.querySelector('#vet-carousel')
 
 function modalCreate() {
-  var $modalContainer = document.querySelector('#modal1')
-  $modalContainer.innerHTML = ''
-
   var $modal = document.createElement('div')
   $modal.classList.add('modal-content')
+  $modal.innerHTML =  ''
 
   var $modalImageContainer = document.createElement('div')
   $modalImageContainer.classList.add('modal-image-container')
@@ -131,17 +129,22 @@ function modalCreate() {
   $modalContentContainer.classList.add('modal-content-container')
 
   var $vetName = document.createElement('h5')
+  $vetName.setAttribute('id', 'vet-name')
 
   var $background = document.createElement('h6')
   $background.textContent = 'Background'
 
   var $vetBackground = document.createElement('p')
+  $vetBackground.setAttribute('id', 'vet-background')
 
   var $education = document.createElement('h6')
   $education.textContent = 'Education'
 
   var $vetSchool = document.createElement('p')
+  $vetSchool.setAttribute('id', 'vet-school')
+
   var $undergrad = document.createElement('p')
+  $undergrad.setAttribute('id', 'undergrad')
 
   var $pets = document.createElement('h6')
   $pets.textContent = 'Pets'
@@ -149,6 +152,7 @@ function modalCreate() {
   $modal.appendChild($modalImageContainer)
   $modal.appendChild($modalContentContainer)
   $modalImageContainer.appendChild($vetImage)
+  $modalContentContainer.appendChild($vetName)
   $modalContentContainer.appendChild($background)
   $modalContentContainer.appendChild($vetBackground)
   $modalContentContainer.appendChild($education)
@@ -156,5 +160,17 @@ function modalCreate() {
   $modalContentContainer.appendChild($undergrad)
   $modalContentContainer.appendChild($pets)
 
-  $modalContainer.insertBefore($modal, document.querySelector('.modal-footer'))
+  document.querySelector('#modal1').insertBefore($modal, document.querySelector('.modal-footer'))
+}
+
+function modalPopulate (id, collection) {
+  for (var i = 0; i < vets.length; i++) {
+    if (id === collection[i].id) {
+      document.querySelector('#vet-image').setAttribute('src', collection[i].image)
+      document.querySelector('#vet-name').textContent = 'Dr. ' + collection[i].firstName + ' ' + collection[i].lastName
+      document.querySelector('#vet-background').textContent = collection[i].background
+      document.querySelector('#vet-school').textContent = collection[i].vetSchool
+      document.querySelector('#undergrad').textContent = collection[i].undergraduate
+    }
+  }
 }
