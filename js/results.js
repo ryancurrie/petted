@@ -84,3 +84,17 @@ var vets = [
       }]
   }
 ]
+
+var query = localStorage.getItem('searchZip')
+
+function results(query, options) {
+  var searchResults = []
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].zipsServed.indexOf(query) !== -1) {
+      searchResults.push(options[i])
+    }
+  }
+  return searchResults
+}
+
+var $results = results(query, vets)
