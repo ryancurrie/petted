@@ -109,10 +109,6 @@ div.feature-icon img {
   max-width: 6em;
 }
 
-.vet-card h6 {
-  color: #3eb8c3;
-}
-
 #our-vets img.vet-carousel-image {
   width: 12em;
 }
@@ -163,4 +159,12 @@ div.feature-icon img {
 
 #footer-contact li a {
   color: #fff;
+}
+
+.vet-card {
+}
+
+.vet-card-image {
+  margin-top: 0.5rem;
+
 }

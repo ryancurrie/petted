@@ -98,3 +98,74 @@ function results(query, options) {
 }
 
 var $results = results(query, vets)
+
+function renderListing(vet) {
+  var $vetCard = document.createElement('div')
+  $vetCard.classList.add('card','col','s12','l4','vet-card','hoverable')
+
+  var $cardImage = document.createElement('div')
+  $cardImage.classList.add('card-image','waves-effect','waves-block','waves-light')
+
+  var $vetImage = document.createElement('img')
+  $vetImage.classList.add('activator','vet-card-image')
+  $vetImage.setAttribute('src', vet.image)
+
+  var $cardContent = document.createElement('div')
+  $cardContent.classList.add('card-content')
+
+  var $vetName = document.createElement('span')
+  $vetName.classList.add('card-title','activator','grey-text','text-darken-4')
+  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+
+  var $btnHolder = document.createElement('p')
+  $btnHolder.classList.add('center')
+
+  var $btn = document.createElement('a')
+  $btn.classList.add('waves-effect','waves-light','btn-large')
+  $btn.textContent = 'Select'
+
+  var $cardReveal = document.createElement('div')
+  $cardReveal.classList.add('card-reveal')
+
+  var $vetNameReveal = document.createElement('span')
+  $vetNameReveal.classList.add('card-title','activator','grey-text','text-darken-4')
+  $vetNameReveal.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+
+  var $closeIcon = document.createElement('i')
+  $closeIcon.classList.add('material-icons','right')
+  $closeIcon.textContent = 'close'
+
+  var $vetBackground = document.createElement('p')
+  $vetBackground.textContent = vet.background
+
+  var $btnHolderReveal = document.createElement('p')
+  $btnHolderReveal.classList.add('center')
+
+  var $btnReveal = document.createElement('a')
+  $btnReveal.classList.add('waves-effect','waves-light','btn-large')
+  $btnReveal.textContent = 'Select'
+
+  $vetCard.appendChild($cardImage)
+  $cardImage.appendChild($vetImage)
+  $vetCard.appendChild($cardContent)
+  $cardContent.appendChild($vetName)
+  $cardContent.appendChild($btnHolder)
+  $btnHolder.appendChild($btn)
+  $vetCard.appendChild($cardReveal)
+  $cardReveal.appendChild($vetNameReveal)
+  $cardReveal.appendChild($vetBackground)
+  $cardReveal.appendChild($btnHolderReveal)
+  $btnHolderReveal.appendChild($btnReveal)
+
+  return $vetCard
+}
+
+function showResults(results) {
+  for (i = 0; i < results.length; i++) {
+    var $resultListing = renderListing(results[i])
+    var $listing = document.querySelector('#available-vets')
+    $listing.appendChild($resultListing)
+  }
+}
+
+showResults($results)
