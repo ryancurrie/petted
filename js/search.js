@@ -113,29 +113,48 @@ var vets = [
 
 var $vetCarousel = document.querySelector('#vet-carousel')
 
-function modalCreate(vet) {
+function modalCreate() {
+  var $modalContainer = document.querySelector('#modal1')
+  $modalContainer.innerHTML = ''
+
   var $modal = document.createElement('div')
+  $modal.classList.add('modal-content')
+
   var $modalImageContainer = document.createElement('div')
+  $modalImageContainer.classList.add('modal-image-container')
+
   var $vetImage = document.createElement('img')
+  $vetImage.setAttribute('id', 'vet-image')
+  $vetImage.setAttribute('src', '#')
+
   var $modalContentContainer = document.createElement('div')
+  $modalContentContainer.classList.add('modal-content-container')
+
   var $vetName = document.createElement('h5')
+
   var $background = document.createElement('h6')
+  $background.textContent = 'Background'
+
   var $vetBackground = document.createElement('p')
+
   var $education = document.createElement('h6')
+  $education.textContent = 'Education'
+
   var $vetSchool = document.createElement('p')
   var $undergrad = document.createElement('p')
+
   var $pets = document.createElement('h6')
-
-
-
-  $modal.classList.add('modal-content')
-  $modalImageContainer.classList.add('modal-image-container')
-  $vetImage.setAttribute('src', '#')
-  $modalContentContainer.classList.add('modal-content-container')
-  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
-  $background.textContent = 'Background'
-  $vetBackground.textContent = vet.background
-  $education.textContent = 'Education'
-  $vetSchool.textContent = vet.vetSchool
-  $undergrad.textContent = vet.undergraduate
   $pets.textContent = 'Pets'
+
+  $modal.appendChild($modalImageContainer)
+  $modal.appendChild($modalContentContainer)
+  $modalImageContainer.appendChild($vetImage)
+  $modalContentContainer.appendChild($background)
+  $modalContentContainer.appendChild($vetBackground)
+  $modalContentContainer.appendChild($education)
+  $modalContentContainer.appendChild($vetSchool)
+  $modalContentContainer.appendChild($undergrad)
+  $modalContentContainer.appendChild($pets)
+
+  $modalContainer.insertBefore($modal, document.querySelector('.modal-footer'))
+}
