@@ -113,15 +113,17 @@ var vets = [
 
 var $vetCarousel = document.querySelector('#vet-carousel')
 $vetCarousel.addEventListener('click', function(event){
+  document.querySelector('#modal1').innerHTML = ''
   var $id = event.target.getAttribute('data-id')
   modalCreate()
   modalPopulate($id, vets)
 })
 
 function modalCreate() {
+  var $modalContainer = document.querySelector('#modal1')
+
   var $modal = document.createElement('div')
   $modal.classList.add('modal-content')
-  $modal.innerHTML =  ''
 
   var $modalImageContainer = document.createElement('div')
   $modalImageContainer.classList.add('modal-image-container')
@@ -157,6 +159,22 @@ function modalCreate() {
   $pets.classList.add('modal-sub-header')
   $pets.textContent = 'Pets'
 
+  var $footer = document.createElement('div')
+  $footer.classList.add('modal-footer')
+  $footer.classList.add('vet-modal-footer')
+
+  var $footerButton = document.createElement('a')
+  $footerButton.classList.add('modal-action')
+  $footerButton.classList.add('modal-close')
+  $footerButton.classList.add('waves-effect')
+  $footerButton.classList.add('waves-green')
+  $footerButton.classList.add('btn-flat')
+  $footerButton.textContent = 'Close'
+  var $footerIcon = document.createElement('i')
+  $footerIcon.classList.add('small')
+  $footerIcon.classList.add('material-icons')
+  $footerIcon.textContent = 'close'
+
   $modal.appendChild($modalImageContainer)
   $modal.appendChild($modalContentContainer)
   $modalImageContainer.appendChild($vetImage)
@@ -167,8 +185,11 @@ function modalCreate() {
   $modalContentContainer.appendChild($vetSchool)
   $modalContentContainer.appendChild($undergrad)
   $modalContentContainer.appendChild($pets)
+  $footer.appendChild($footerButton)
+  $footerButton.appendChild($footerIcon)
 
-  document.querySelector('#modal1').insertBefore($modal, document.querySelector('.modal-footer'))
+  $modalContainer.appendChild($modal)
+  $modalContainer.appendChild($footer)
 }
 
 function modalPopulate (id, collection) {
@@ -177,8 +198,8 @@ function modalPopulate (id, collection) {
       document.querySelector('#vet-image').setAttribute('src', collection[i].image)
       document.querySelector('#vet-name').textContent = 'Dr. ' + collection[i].firstName + ' ' + collection[i].lastName
       document.querySelector('#vet-background').textContent = collection[i].background
-      document.querySelector('#vet-school').textContent = collection[i].vetSchool
-      document.querySelector('#undergrad').textContent = collection[i].undergraduate
+      document.querySelector('#vet-school').textContent = 'Veterinary School: ' + collection[i].vetSchool
+      document.querySelector('#undergrad').textContent = 'Undergraduate: ' + collection[i].undergraduate
     }
   }
 }
