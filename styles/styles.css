@@ -166,5 +166,5 @@ div.feature-icon img {
 
 .vet-card-image {
   margin-top: 0.5rem;
-
+  max-height: 18em;
 }
