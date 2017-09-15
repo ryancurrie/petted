@@ -112,6 +112,11 @@ var vets = [
 ]
 
 var $vetCarousel = document.querySelector('#vet-carousel')
+$vetCarousel.addEventListener('click', function(event){
+  var $id = event.target.getAttribute('data-id')
+  modalCreate()
+  modalPopulate($id, vets)
+})
 
 function modalCreate() {
   var $modal = document.createElement('div')
@@ -132,12 +137,14 @@ function modalCreate() {
   $vetName.setAttribute('id', 'vet-name')
 
   var $background = document.createElement('h6')
+  $background.classList.add('modal-sub-header')
   $background.textContent = 'Background'
 
   var $vetBackground = document.createElement('p')
   $vetBackground.setAttribute('id', 'vet-background')
 
   var $education = document.createElement('h6')
+  $education.classList.add('modal-sub-header')
   $education.textContent = 'Education'
 
   var $vetSchool = document.createElement('p')
@@ -147,6 +154,7 @@ function modalCreate() {
   $undergrad.setAttribute('id', 'undergrad')
 
   var $pets = document.createElement('h6')
+  $pets.classList.add('modal-sub-header')
   $pets.textContent = 'Pets'
 
   $modal.appendChild($modalImageContainer)
