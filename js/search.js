@@ -113,15 +113,12 @@ var vets = [
 
 var $vetCarousel = document.querySelector('#vet-carousel')
 $vetCarousel.addEventListener('click', function(event){
-  document.querySelector('#modal1').innerHTML = ''
+  document.querySelector('#modal-insert').innerHTML = ''
   var $id = event.target.getAttribute('data-id')
-  modalCreate()
   modalPopulate($id, vets)
 })
 
-function modalCreate() {
-  var $modalContainer = document.querySelector('#modal1')
-
+function modalCreate(vet) {
   var $modal = document.createElement('div')
   $modal.classList.add('modal-content')
 
@@ -130,13 +127,14 @@ function modalCreate() {
 
   var $vetImage = document.createElement('img')
   $vetImage.setAttribute('id', 'vet-image')
-  $vetImage.setAttribute('src', '#')
+  $vetImage.setAttribute('src', vet.image)
 
   var $modalContentContainer = document.createElement('div')
   $modalContentContainer.classList.add('modal-content-container')
 
   var $vetName = document.createElement('h5')
   $vetName.setAttribute('id', 'vet-name')
+  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
 
   var $background = document.createElement('h6')
   $background.classList.add('modal-sub-header')
@@ -144,6 +142,7 @@ function modalCreate() {
 
   var $vetBackground = document.createElement('p')
   $vetBackground.setAttribute('id', 'vet-background')
+  $vetBackground.textContent = vet.background
 
   var $education = document.createElement('h6')
   $education.classList.add('modal-sub-header')
@@ -151,29 +150,15 @@ function modalCreate() {
 
   var $vetSchool = document.createElement('p')
   $vetSchool.setAttribute('id', 'vet-school')
+  $vetSchool.textContent = 'Veterinary School: ' + vet.vetSchool
 
   var $undergrad = document.createElement('p')
   $undergrad.setAttribute('id', 'undergrad')
+  $undergrad.textContent = 'Undergraduate: ' + vet.undergraduate
 
   var $pets = document.createElement('h6')
   $pets.classList.add('modal-sub-header')
   $pets.textContent = 'Pets'
-
-  var $footer = document.createElement('div')
-  $footer.classList.add('modal-footer')
-  $footer.classList.add('vet-modal-footer')
-
-  var $footerButton = document.createElement('a')
-  $footerButton.classList.add('modal-action')
-  $footerButton.classList.add('modal-close')
-  $footerButton.classList.add('waves-effect')
-  $footerButton.classList.add('waves-green')
-  $footerButton.classList.add('btn-flat')
-  $footerButton.textContent = 'Close'
-  var $footerIcon = document.createElement('i')
-  $footerIcon.classList.add('small')
-  $footerIcon.classList.add('material-icons')
-  $footerIcon.textContent = 'close'
 
   $modal.appendChild($modalImageContainer)
   $modal.appendChild($modalContentContainer)
@@ -185,21 +170,25 @@ function modalCreate() {
   $modalContentContainer.appendChild($vetSchool)
   $modalContentContainer.appendChild($undergrad)
   $modalContentContainer.appendChild($pets)
-  $footer.appendChild($footerButton)
-  $footerButton.appendChild($footerIcon)
 
-  $modalContainer.appendChild($modal)
-  $modalContainer.appendChild($footer)
+  for (var i = 0; i < vet.pets.length; i++) {
+    var $petName = vet.pets[i].name
+    var $petDesc = vet.pets[i].description
+    var $pet = document.createElement('p')
+    $pet.textContent = $petName + ': ' + $petDesc
+    $modalContentContainer.appendChild($pet)
+  }
+
+  return $modal
+
 }
 
 function modalPopulate (id, collection) {
   for (var i = 0; i < vets.length; i++) {
     if (id === collection[i].id) {
-      document.querySelector('#vet-image').setAttribute('src', collection[i].image)
-      document.querySelector('#vet-name').textContent = 'Dr. ' + collection[i].firstName + ' ' + collection[i].lastName
-      document.querySelector('#vet-background').textContent = collection[i].background
-      document.querySelector('#vet-school').textContent = 'Veterinary School: ' + collection[i].vetSchool
-      document.querySelector('#undergrad').textContent = 'Undergraduate: ' + collection[i].undergraduate
+      var $modalDetails = modalCreate(collection[i])
+      var $modal = document.querySelector('#modal-insert')
+      $modal.appendChild($modalDetails)
     }
   }
 }
