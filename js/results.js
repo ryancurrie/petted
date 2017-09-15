@@ -85,8 +85,6 @@ var vets = [
   }
 ]
 
-var query = localStorage.getItem('searchZip')
-
 function results(query, options) {
   var searchResults = []
   for (var i = 0; i < options.length; i++) {
@@ -96,8 +94,6 @@ function results(query, options) {
   }
   return searchResults
 }
-
-var $results = results(query, vets)
 
 function renderListing(vet) {
   var $vetCard = document.createElement('div')
@@ -168,4 +164,6 @@ function showResults(results) {
   }
 }
 
+var query = localStorage.getItem('searchZip')
+var $results = results(query, vets)
 showResults($results)
