@@ -118,6 +118,7 @@ function renderListing(vet) {
 
   var $btn = document.createElement('a')
   $btn.classList.add('waves-effect','waves-light','btn-large')
+  $btn.setAttribute('data-id', vet.id)
   $btn.textContent = 'Select'
 
   var $cardReveal = document.createElement('div')
@@ -139,6 +140,7 @@ function renderListing(vet) {
 
   var $btnReveal = document.createElement('a')
   $btnReveal.classList.add('waves-effect','waves-light','btn-large')
+  $btnReveal.setAttribute('data-id', vet.id)
   $btnReveal.textContent = 'Select'
 
   $vetCard.appendChild($cardImage)
@@ -167,3 +169,10 @@ function showResults(results) {
 var query = localStorage.getItem('searchZip')
 var $results = results(query, vets)
 showResults($results)
+
+var $selection = document.querySelector('.btn-large')
+$selection.addEventListener('click', function(event) {
+  var $userVet = event.target.dataset.id
+  localStorage.setItem('userVet', $userVet)
+  window.location.href = 'appointment.html'
+})
