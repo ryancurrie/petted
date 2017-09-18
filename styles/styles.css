@@ -165,3 +165,14 @@ div.feature-icon img {
   margin-top: 0.5rem;
   max-height: 18em;
 }
+
+.booking-label,
+input#date.datepicker,
+input#time.timepicker {
+  font-size: 1.5em;
+}
+
+#apt-at {
+  margin: 2em 0;
+  font-size: 2em;
+}
