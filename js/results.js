@@ -170,9 +170,12 @@ var query = localStorage.getItem('searchZip')
 var $results = results(query, vets)
 showResults($results)
 
-var $selection = document.querySelector('.btn-large')
-$selection.addEventListener('click', function(event) {
-  var $userVet = event.target.dataset.id
-  localStorage.setItem('userVet', $userVet)
-  window.location.href = 'appointment.html'
+var $available = document.querySelector('#available-vets')
+
+$available.addEventListener('click', function(event) {
+  if (event.target.tagName.toLowerCase() === 'a') {
+    var $userVet = event.target.dataset.id
+    localStorage.setItem('userVet', $userVet)
+    window.location.href = 'appointment.html'
+  }
 })
