@@ -44,6 +44,52 @@ function petSpecies () {
   return $species
 }
 
+function petStatus () {
+  var $status = document.createElement('div')
+
+  var $headerRow = document.createElement('div')
+  $headerRow.classList.add('row')
+
+  var $statusHeader = document.createElement('h4')
+  $statusHeader.classList.add('center','flow-text')
+  $statusHeader.textContent = 'Is your pet spayed/neutered?'
+
+  var $buttonRow = document.createElement('div')
+  $buttonRow.classList.add('row')
+
+  var $buttonContainer = document.createElement('div')
+  $buttonContainer.classList.add('col','s8','l4','offset-l4','offset-s2')
+
+  var $yesDiv = document.createElement('div')
+  $yesDiv.classList.add('left')
+
+  var $yesButton = document.createElement('a')
+  $yesButton.classList.add('waves-effect','waves-light','btn-large')
+  $yesButton.setAttribute('id', 'yes-button')
+  $yesButton.setAttribute('data-status', 'yes')
+  $yesButton.textContent = 'Yes'
+
+  var $noDiv = document.createElement('div')
+  $noDiv.classList.add('right')
+
+  var $noButton = document.createElement('a')
+  $noButton.classList.add('waves-effect','waves-light','btn-large')
+  $noButton.setAttribute('id', 'no-button')
+  $noButton.setAttribute('data-status', 'no')
+  $noButton.textContent = 'No'
+
+  $status.appendChild($headerRow)
+  $headerRow.appendChild($statusHeader)
+  $status.appendChild($buttonRow)
+  $buttonRow.appendChild($buttonContainer)
+  $buttonContainer.appendChild($yesDiv)
+  $buttonContainer.appendChild($noDiv)
+  $yesDiv.appendChild($yesButton)
+  $noDiv.appendChild($noButton)
+
+  return $status
+}
+
 function petNameAge () {
   var $nameAge = document.createElement('div')
 
@@ -123,8 +169,6 @@ function petNameAge () {
 }
 
 function petBreed() {
-  species = localStorage.getItem('userPetSpecies')
-
   var $breeds = document.createElement('div')
 
   var $headerRow = document.createElement('div')
@@ -142,6 +186,12 @@ function petBreed() {
 
   var $breedSelect = document.createElement('select')
 
+  var $optionPlaceholder = document.createElement('option')
+  $optionPlaceholder.setAttribute('value', ' ')
+  $optionPlaceholder.setAttribute('disabled', 'true')
+  $optionPlaceholder.setAttribute('selected', 'true')
+  $optionPlaceholder.textContent = 'Choose a breed'
+
   var $buttonRow = document.createElement('div')
   $buttonRow.classList.add('row','center')
 
@@ -156,7 +206,10 @@ function petBreed() {
   $breedContainer.appendChild($breedSelect)
   $breeds.appendChild($buttonRow)
   $buttonRow.appendChild($nextButton)
+  $breedSelect.appendChild($optionPlaceholder)
 
+  var species = localStorage.getItem('userPetSpecies')
+  
   if (species === 'cat') {
     var catBreeds = ['Domestic Shorthair', 'Domestic Longhair', 'Persian', 'Siamese', 'Scottish Fold', 'Ragdoll', 'Calico', 'Norwegian Forest Cat']
 
@@ -183,39 +236,69 @@ function petBreed() {
   return $breeds
 }
 
-var $petForm = document.querySelector('#pet-info')
-
 function showForm(form) {
   $petForm.innerHTML = ''
   $petForm.appendChild(form)
   $('select').material_select();
 }
 
+function getPetSpecies() {
+  localStorage.setItem('userPetSpecies', event.target.dataset.species)
+  step++
+  showForm(steps[step])
+}
+
+function getPetStatus() {
+  localStorage.setItem('userPetStatus', event.target.dataset.status)
+  step++
+  showForm(steps[step])
+}
+
+function getNameAge () {
+  if (document.querySelector('input#pet-name').value !== '' && document.querySelector('li.active') !== null) {
+    localStorage.setItem('userPetName', document.querySelector('input#pet-name').value)
+    localStorage.setItem('userPetAge', document.querySelector('li.active').textContent)
+    step++
+    showForm(steps[step])
+  }
+  else {
+    Materialize.toast('Please enter your pet\'s name and age.', 4000, 'pink lighten-2 pulse')
+  }
+}
+
+function getBreed() {
+  if (document.querySelector('li.active') !== null) {
+    localStorage.setItem('userPetBreed', document.querySelector('li.active').textContent)
+    window.location.href = '#'
+  }
+  else {
+    Materialize.toast('Please enter your pet\'s breed.', 4000, 'pink lighten-2 pulse')
+  }
+}
+
 var step = 0
-var steps = [petSpecies(), petNameAge(), petBreed()]
+var steps = [petSpecies(), petStatus(), petNameAge(), petBreed()]
+var $petForm = document.querySelector('#pet-info')
 
 showForm(steps[step])
 
 $petForm.addEventListener('click', function(event) {
   if (event.target.tagName.toLowerCase() === 'a') {
-    var $userPetSpecies = event.target.dataset.species
-    localStorage.setItem('userPetSpecies', $userPetSpecies)
-    if (step <= steps.length) {
-      step++
-      showForm(steps[step])
+    switch (step) {
+      case 0:
+        getPetSpecies()
+        break
+      case 1:
+        getPetStatus()
+        break
+      case 2:
+        getNameAge()
+        break
+      case 3:
+        getBreed()
+        break
+      default:
+        step = 0
     }
   }
 })
-
-/*$petForm.addEventListener('click', fucntion(event) {
-  switch (step) {
-    case 0:
-    if (event.target.tagName.toLowerCase() === 'a') {
-      var $userPetSpecies = event.target.dataset.species
-      localStorage.setItem('userPetSpecies', $userPetSpecies)
-      $petForm.innerHTML = ''}
-      break;
-    case 1:
-      var $petName = document.querySelector('#pet-name').value
-  }
-})*/
