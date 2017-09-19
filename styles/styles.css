@@ -176,3 +176,7 @@ input#time.timepicker {
   margin: 2em 0;
   font-size: 2em;
 }
+
+#pet-radio-left {
+  float: left;
+}

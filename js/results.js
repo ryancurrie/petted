@@ -166,7 +166,7 @@ function showResults(results) {
   }
 }
 
-var query = localStorage.getItem('searchZip')
+var query = localStorage.getItem('userZip')
 var $results = results(query, vets)
 showResults($results)
 
