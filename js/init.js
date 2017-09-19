@@ -32,5 +32,9 @@ $('.timepicker').pickatime({
   canceltext: 'Cancel',
   autoclose: false,
   ampmclickable: true,
-  aftershow: function(){} 
+  aftershow: function(){}
+});
+
+$(document).ready(function() {
+  $('select').material_select();
 });

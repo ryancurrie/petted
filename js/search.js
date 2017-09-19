@@ -14,7 +14,7 @@ function search(zip) {
 
 function getUserZip() {
   var userZip = document.querySelector('#zip').value
-  localStorage.setItem('searchZip', userZip)
+  localStorage.setItem('userZip', userZip)
   return userZip
 }
 

@@ -6,7 +6,7 @@ next.addEventListener('click', function(event) {
   if ($userDate !== '' && $userTime !== '') {
     localStorage.setItem('userDate', $userDate)
     localStorage.setItem('userTime', $userTime)
-    window.location.href = '#'
+    window.location.href = 'pet.html'
   }
   else {
     Materialize.toast('Please select a date and time.', 4000, 'pink lighten-2 pulse')
