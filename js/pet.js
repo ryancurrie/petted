@@ -209,7 +209,7 @@ function petBreed() {
   $breedSelect.appendChild($optionPlaceholder)
 
   var species = localStorage.getItem('userPetSpecies')
-  
+
   if (species === 'cat') {
     var catBreeds = ['Domestic Shorthair', 'Domestic Longhair', 'Persian', 'Siamese', 'Scottish Fold', 'Ragdoll', 'Calico', 'Norwegian Forest Cat']
 
@@ -234,12 +234,6 @@ function petBreed() {
   }
 
   return $breeds
-}
-
-function showForm(form) {
-  $petForm.innerHTML = ''
-  $petForm.appendChild(form)
-  $('select').material_select();
 }
 
 function getPetSpecies() {
@@ -267,6 +261,7 @@ function getNameAge () {
 }
 
 function getBreed() {
+
   if (document.querySelector('li.active') !== null) {
     localStorage.setItem('userPetBreed', document.querySelector('li.active').textContent)
     window.location.href = '#'
@@ -276,8 +271,14 @@ function getBreed() {
   }
 }
 
+function showForm(form) {
+  $petForm.innerHTML = ''
+  $petForm.appendChild(form())
+  $('select').material_select();
+}
+
 var step = 0
-var steps = [petSpecies(), petStatus(), petNameAge(), petBreed()]
+var steps = [petSpecies, petStatus, petNameAge, petBreed]
 var $petForm = document.querySelector('#pet-info')
 
 showForm(steps[step])
