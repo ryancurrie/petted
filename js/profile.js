@@ -51,7 +51,7 @@ function userInfo() {
   $streetLabel.textContent ='Street Address'
 
   var $zipRow = document.createElement('div')
-  $nameRow.classList.add('row')
+  $zipRow.classList.add('row')
 
   var $zipDiv = document.createElement('div')
   $zipDiv.classList.add('input-field','col','s12','m6')
@@ -69,11 +69,18 @@ function userInfo() {
 
   var $stateDiv = document.createElement('div')
   $stateDiv.classList.add('input-field','col','s12','m6')
+  $stateDiv.setAttribute('id', 'state')
 
   var $stateSelect = document.createElement('select')
 
   var $stateLabel = document.createElement('label')
   $stateLabel.textContent = 'State'
+
+  var $optionPlaceholder = document.createElement('option')
+  $optionPlaceholder.setAttribute('value', ' ')
+  $optionPlaceholder.setAttribute('disabled', 'true')
+  $optionPlaceholder.setAttribute('selected', 'true')
+  $optionPlaceholder.textContent = 'State'
 
   var $contactRow = document.createElement('div')
   $contactRow.classList.add('row')
@@ -129,6 +136,7 @@ function userInfo() {
   $zipDiv.appendChild($zipLabel)
   $zipRow.appendChild($stateDiv)
   $stateDiv.appendChild($stateSelect)
+  $stateSelect.appendChild($optionPlaceholder)
 
   for (var i = 0; i < states.length; i++) {
     var $stateOption = document.createElement('option')
@@ -154,3 +162,61 @@ function showForm() {
 }
 
 showForm()
+
+var $userForm = document.querySelector('#user-info')
+
+$userForm.addEventListener('input', function(event){
+  var e = event.srcElement.id
+  switch(e) {
+    case 'first-name':
+      localStorage.setItem('userFirstName', event.target.value)
+      break
+    case 'last-name':
+      localStorage.setItem('userLastName', event.target.value)
+      break
+    case 'street-address':
+      localStorage.setItem('userStreetAddress', event.target.value)
+      break
+    case 'email':
+      localStorage.setItem('userEmail', event.target.value)
+      break
+    case 'phone-number':
+      localStorage.setItem('userPhone', event.target.value)
+    default:
+  }
+})
+
+$userForm.addEventListener('click', function(event){
+  if (event.target.tagName.toLowerCase() === 'a') {
+    if (validate() === true) {
+      window.location.href = 'confirmation.html'
+    }
+    else {
+      Materialize.toast('Please complete entering your information.', 4000, 'pink lighten-2 pulse')
+    }
+  }
+})
+
+function validate () {
+  var firstName = getClasses('first-name').indexOf('valid') !== -1
+  var lastName = getClasses('last-name').indexOf('valid') !== -1
+  var streetAddress = getClasses('street-address').indexOf('valid') !== -1
+  var zipCode = getClasses('zip').indexOf('valid') !== -1
+  var email = getClasses('email').indexOf('valid') !== -1
+  var phone = getClasses('phone-number').indexOf('valid') !== -1
+  var state = document.querySelectorAll('#state .active').length > 0
+
+  if (firstName === true && lastName === true && streetAddress === true && zipCode === true && email === true && phone === true && state === true) {
+    return true
+  }
+  else {
+    return false
+  }
+
+}
+
+function getClasses(id) {
+  var domTokens = document.querySelector('#'+id).classList
+  var classArray = Array.from(domTokens)
+  return classArray
+}
