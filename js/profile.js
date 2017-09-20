@@ -201,7 +201,7 @@ function validate () {
   var firstName = getClasses('first-name').indexOf('valid') !== -1
   var lastName = getClasses('last-name').indexOf('valid') !== -1
   var streetAddress = getClasses('street-address').indexOf('valid') !== -1
-  var zipCode = getClasses('zip').indexOf('valid') !== -1
+  var zipCode = getClasses('zip').indexOf('valid') !== -1 || document.querySelector('#zip').value !== ''
   var email = getClasses('email').indexOf('valid') !== -1
   var phone = getClasses('phone-number').indexOf('valid') !== -1
   var state = document.querySelectorAll('#state .active').length > 0
