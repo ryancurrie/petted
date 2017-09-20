@@ -264,7 +264,7 @@ function getBreed() {
 
   if (document.querySelector('li.active') !== null) {
     localStorage.setItem('userPetBreed', document.querySelector('li.active').textContent)
-    window.location.href = '#'
+    window.location.href = 'profile.html'
   }
   else {
     Materialize.toast('Please enter your pet\'s breed.', 4000, 'pink lighten-2 pulse')
