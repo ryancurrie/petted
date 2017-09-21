@@ -189,6 +189,7 @@ $userForm.addEventListener('input', function(event){
 $userForm.addEventListener('click', function(event){
   if (event.target.tagName.toLowerCase() === 'a') {
     if (validate() === true) {
+      sendToSegment()
       window.location.href = 'confirmation.html'
     }
     else {
@@ -219,4 +220,22 @@ function getClasses(id) {
   var domTokens = document.querySelector('#'+id).classList
   var classArray = Array.from(domTokens)
   return classArray
+}
+
+function sendToSegment () {
+  analytics.track(
+    'Form',
+    {
+      email:localStorage.getItem('userEmail'),
+      firstName:localStorage.getItem('userFirstName'),
+      lastName:localStorage.getItem('userLastName'),
+      streetAddress:localStorage.getItem('userStreetAddress'),
+      zip:localStorage.getItem('userZip'),
+      phone:localStorage.getItem('userPhone'),
+      vet:localStorage.getItem('userVet'),
+      petName:localStorage.getItem('userPetName'),
+      petSpecies:localStorage.getItem('userPetSpecies'),
+      petStatus:localStorage.getItem('userPetStatus'),
+      petAge:localStorage.getItem('userPetAge')
+    })
 }

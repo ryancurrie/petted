@@ -3,6 +3,7 @@ var validZips = ['12345', '11223', '54321']
 function search(zip) {
   for (var i = 0; i < validZips.length; i++) {
     if (zip === validZips[i]) {
+      analytics.track('ZipSearch',{zip:localStorage.getItem('userZip')})
       window.location.href = 'doctors.html'
       return
     }

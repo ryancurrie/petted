@@ -92,6 +92,7 @@ function results(query, options) {
       searchResults.push(options[i])
     }
   }
+  analytics.track('ZipSearch.InArea')
   return searchResults
 }
 
@@ -164,6 +165,7 @@ function showResults(results) {
     var $listing = document.querySelector('#available-vets')
     $listing.appendChild($resultListing)
   }
+  analytics.track('ViewedDoctors', {countOfResult:document.querySelectorAll('.vet-card').length})
 }
 
 var query = localStorage.getItem('userZip')

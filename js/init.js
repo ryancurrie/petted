@@ -6,6 +6,15 @@
   });
 })(jQuery);
 
+function isNew() {
+  if ( sessionStorage.getItem('isNew') === null) {
+    sessionStorage.setItem('isNew', true)
+    analytics.track('SessionStart', {sessionID:uuid()})
+  }
+}
+
+isNew()
+
 $(document).ready(function(){
   $('.carousel').carousel();
 });
