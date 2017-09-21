@@ -220,3 +220,21 @@ function getClasses(id) {
   var classArray = Array.from(domTokens)
   return classArray
 }
+
+function sendToSegment () {
+   analytics.track(
+     'SubmittedForm',
+     {
+       email:localStorage.getItem('userEmail'),
+       firstName:localStorage.getItem('userFirstName'),
+       lastName:localStorage.getItem('userLastName'),
+       streetAddress:localStorage.getItem('userStreetAddress'),
+       zip:localStorage.getItem('userZip'),
+       phone:localStorage.getItem('userPhone'),
+       vet:localStorage.getItem('userVet'),
+       petName:localStorage.getItem('userPetName'),
+       petSpecies:localStorage.getItem('userPetSpecies'),
+       petStatus:localStorage.getItem('userPetStatus'),
+       petAge:localStorage.getItem('userPetAge')
+     })
+ }
