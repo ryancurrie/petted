@@ -52,24 +52,36 @@ $(document).ready(function() {
    Materialize.updateTextFields();
  });
 
-window.addEventListener('close', cartAbandon())
+window.localLinkClicked = false;
 
- function cartAbandon() {
-   if (window.location.pathname === '/doctors.html' || '/pet.html' || '/appointment.html' || '/profile.html') {
-     analytics.track('CartAbandon', {
-       userVet: localStorage.getItem('userVet'),
-       userFirstName: localStorage.getItem('userFirstName'),
-       userLastName: localStorage.getItem('userLastName'),
-       userEmail: localStorage.getItem('userEmail'),
-       userPhone: localStorage.getItem('userPhone'),
-       userZip: localStorage.getItem('userZip'),
-       userAddress: localStorage.getItem('userStreetAddress'),
-       userPetName: localStorage.getItem('userPetName'),
-       userPetSpecies: localStorage.getItem('userPetSpecies'),
-       PetBreed: localStorage.getItem('userPetBreed'),
-       PetAge: localStorage.getItem('userPetAge'),
-       appointmentDate: localStorage.getItem('userDate'),
-       appointmentTime: localStorage.getItem('userTime')
-     })
+window.addEventListener('click', function(event){
+   if (event.target.tagName.toLowerCase() === 'a') {
+     window.localLinkClicked = true;
+   }
+ })
+
+window.onbeforeunload = function () {
+   if (window.localLinkClicked !== true) {
+     cartAbandon()
    }
  }
+
+function cartAbandon() {
+  if (window.location.pathname === '/doctors.html' || '/pet.html' || '/appointment.html' || '/profile.html') {
+    analytics.track('CartAbandon', {
+      userVet: localStorage.getItem('userVet'),
+      userFirstName: localStorage.getItem('userFirstName'),
+      userLastName: localStorage.getItem('userLastName'),
+      userEmail: localStorage.getItem('userEmail'),
+      userPhone: localStorage.getItem('userPhone'),
+      userZip: localStorage.getItem('userZip'),
+      userAddress: localStorage.getItem('userStreetAddress'),
+      userPetName: localStorage.getItem('userPetName'),
+      userPetSpecies: localStorage.getItem('userPetSpecies'),
+      PetBreed: localStorage.getItem('userPetBreed'),
+      PetAge: localStorage.getItem('userPetAge'),
+      appointmentDate: localStorage.getItem('userDate'),
+      appointmentTime: localStorage.getItem('userTime')
+    })
+  }
+}
