@@ -165,7 +165,7 @@ function showResults(results) {
     var $listing = document.querySelector('#available-vets')
     $listing.appendChild($resultListing)
   }
-  analytics.track('ViewedDoctors', {countOfResult:document.querySelectorAll('.vet-card').length})
+  analytics.track('BookingViewedDoctors', {countOfResult:document.querySelectorAll('.vet-card').length})
 }
 
 var query = localStorage.getItem('userZip')
@@ -178,6 +178,7 @@ $available.addEventListener('click', function(event) {
   if (event.target.tagName.toLowerCase() === 'a') {
     var $userVet = event.target.dataset.id
     localStorage.setItem('userVet', $userVet)
+    analytics.track('SelectedDoctor', {vetID:$userVet})
     window.location.href = 'appointment.html'
   }
 })
