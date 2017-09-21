@@ -1,0 +1,23 @@
+{
+  "name": "petted",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryancurrie/petted.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryancurrie/petted/issues"
+  },
+  "homepage": "https://github.com/ryancurrie/petted#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}

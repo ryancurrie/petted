@@ -1,0 +1,219 @@
+#logo-container img {
+  max-height: 64px;
+  padding: 15px 0;
+}
+
+li a.nav-link,
+li a.nav-icon,
+.nav-wrapper i {
+  color: #3eb8c3;
+}
+
+#hero-section {
+  background: url('../images/cat-on-bed-1920w.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#hero-section-content,
+#features,
+#our-vets {
+  margin: 8em 0;
+}
+
+.heavy-text {
+  font-weight: 600;
+}
+
+input[type=text].hero-search-field {
+  padding-left: 10px;
+  border-radius: 2px;
+  background: #fff;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+
+button#hero-search-button {
+  margin: 15px 0 20px 10px;
+  height: 3rem;
+}
+
+.btn,
+.btn-large {
+  background-color: #3eb8c3;
+}
+
+div.feature-icon {
+  padding: 15px;
+  height: 15em;
+}
+
+div.feature-icon img {
+  max-height: 12em;
+}
+
+@media only screen and (min-width: 600px) {
+  .feature-block p {
+    font-size: 1.4em;
+  }
+}
+
+#testimonial {
+  padding: 11em 0;
+  background: url('../images/brown-dog.jpg') no-repeat center top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#testimonial-container {
+  padding: 1em;
+  border-radius: 2px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#testimonial-text {
+  float: left;
+  width: 66%;
+}
+
+@media only screen and (max-width: 360px) {
+  #testimonial-text {
+    width: 100%;
+  }
+}
+
+.big-quote {
+  font-size: 1.2em;
+}
+
+#testimonial-user {
+  float: right;
+  margin-top: 20%;
+  text-align: right;
+}
+
+@media only screen and (max-width: 360px) {
+  #testimonial-user {
+    float: none;
+    margin-top: 50%;
+    text-align: center;
+  }
+}
+
+#testimonial-image {
+  max-width: 6em;
+}
+
+#our-vets img.vet-carousel-image {
+  width: 12em;
+}
+
+.modal-image-container {
+  float: right;
+  margin: 2em;
+}
+
+@media only screen and (max-width: 360px) {
+  .modal-image-container {
+    float: none;
+    margin: 0;
+  }
+}
+
+#vet-image {
+  max-width: 15em;
+}
+
+@media only screen and (max-width: 360px) {
+  #vet-image {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .modal-content-container {
+    float: left;
+  }
+}
+
+.modal-sub-header {
+  font-size: 1.25em;
+}
+
+.modal .vet-modal-footer {
+  clear: both;
+}
+
+#footer {
+  margin-top: 8em;
+}
+
+.page-footer {
+  background-color: #3eb8c3;
+}
+
+#footer-contact li a {
+  color: #fff;
+}
+
+.vet-card-image {
+  margin-top: 0.5rem;
+  max-height: 18em;
+}
+
+.booking-label,
+input#date.datepicker,
+input#time.timepicker {
+  font-size: 1.5em;
+}
+
+#apt-at {
+  margin: 2em 0;
+  font-size: 2em;
+}
+
+#appointment-details {
+  font-size: 1.25em;
+}
+
+@media only screen and (max-width: 360px) {
+  #appointment-details {
+    clear: both;
+    text-align: center;
+  }
+}
+
+.card .card-content p.day-time {
+  margin: 1em 0;
+}
+
+#image-holder {
+  padding: 2em;
+  float: right;
+  widows: 33%;
+}
+
+@media only screen and (max-width: 360px) {
+  #image-holder {
+    float: left;
+    margin-left: 15%;
+  }
+}
+
+#appointment-image {
+  max-width: 12em;
+}
+
+#return-home {
+  margin-top: 2em;
+  background-color: #3eb8c3;
+}
+
+#return-home a {
+  color: #fff;
+}
