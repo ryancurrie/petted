@@ -173,6 +173,22 @@ function confirmation() {
 
 function showConfirmation () {
   document.querySelector('#confirmation').appendChild(confirmation())
+  analytics.track('BookingComplete',
+   {
+     userVet: localStorage.getItem('userVet'),
+     userFirstName: localStorage.getItem('userFirstName'),
+     userLastName: localStorage.getItem('userLastName'),
+     userEmail: localStorage.getItem('userEmail'),
+     userPhone: localStorage.getItem('userPhone'),
+     userZip: localStorage.getItem('userZip'),
+     userAddress: localStorage.getItem('userStreetAddress'),
+     userPetName: localStorage.getItem('userPetName'),
+     userPetSpecies: localStorage.getItem('userPetSpecies'),
+     PetBreed: localStorage.getItem('userPetBreed'),
+     PetAge: localStorage.getItem('userPetAge'),
+     appointmentDate: localStorage.getItem('userDate'),
+     appointmentTime: localStorage.getItem('userTime')
+   })
 }
 
 showConfirmation()
