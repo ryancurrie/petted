@@ -1,8 +1,6 @@
-var validZips = ['12345', '11223', '54321']
-
 function search(zip) {
-  for (var i = 0; i < validZips.length; i++) {
-    if (zip === validZips[i]) {
+  for (var i = 0; i < vets.length; i++) {
+    if (vets[i].zipsServed.indexOf(zip) !== -1) {
       analytics.track('ZipSearch',{zip:localStorage.getItem('userZip')})
       window.location.href = 'doctors.html'
       return
@@ -126,6 +124,7 @@ var $vetCarousel = document.querySelector('#vet-carousel')
 $vetCarousel.addEventListener('click', function(event){
   document.querySelector('#modal-insert').innerHTML = ''
   var $id = event.target.getAttribute('data-id')
+  analytics.track('ViewedVetDetails', {vetViewed:$id})
   modalPopulate($id, vets)
 })
 
