@@ -239,19 +239,25 @@ function petBreed() {
 function getPetSpecies() {
   localStorage.setItem('userPetSpecies', event.target.dataset.species)
   step++
+  analytics.track('SelectedSpecies', {petSpecies:event.target.dataset.species})
   showForm(steps[step])
 }
 
 function getPetStatus() {
   localStorage.setItem('userPetStatus', event.target.dataset.status)
   step++
+  analytics.track('SelectedStatus')
   showForm(steps[step])
 }
 
 function getNameAge () {
   if (document.querySelector('input#pet-name').value !== '' && document.querySelector('li.active') !== null) {
-    localStorage.setItem('userPetName', document.querySelector('input#pet-name').value)
-    localStorage.setItem('userPetAge', document.querySelector('li.active').textContent)
+    var $petName = document.querySelector('input#pet-name').value
+    var $petAge = document.querySelector('li.active').textContent
+    localStorage.setItem('userPetName', $petName)
+    localStorage.setItem('userPetAge', $petAge)
+    analytics.track('EnteredPetName', {petName:$petName})
+    analytics.track('EnteredPetAge', {petAge:$petAge})
     step++
     showForm(steps[step])
   }
@@ -263,7 +269,9 @@ function getNameAge () {
 function getBreed() {
 
   if (document.querySelector('li.active') !== null) {
-    localStorage.setItem('userPetBreed', document.querySelector('li.active').textContent)
+    var $petBreed = document.querySelector('li.active').textContent
+    localStorage.setItem('userPetBreed', $petBreed)
+    analytics.track('SelectedPetBreed', $petBreed)
     window.location.href = 'profile.html'
   }
   else {
@@ -303,3 +311,5 @@ $petForm.addEventListener('click', function(event) {
     }
   }
 })
+
+analytics.track('BookingViewedPet')
