@@ -189,6 +189,7 @@ function showConfirmation () {
       appointmentDate: localStorage.getItem('userDate'),
       appointmentTime: localStorage.getItem('userTime')
     })
+  analytics.indenify(localStorage.getItem('ajs_anonymous_id'))
 }
 
 showConfirmation()
