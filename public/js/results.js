@@ -164,6 +164,8 @@ function showResults(results) {
     var $listing = document.querySelector('#available-vets')
     $listing.appendChild($resultListing)
   }
+
+  analytics.track('BookingViewedDoctors', {countOfResult:document.querySelectorAll('.vet-card').length})
 }
 
 var query = localStorage.getItem('userZip')
