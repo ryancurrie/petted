@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <title>Petted VetCare</title>
+
+<!-- Segment Script -->
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="4.0.0";
+    analytics.load("sONSAGfEmCJs0b7u330t1B2VTiGFqDEQ");
+    analytics.page();
+    }}();
+  </script>
+
+</head>
+<body>
+  <nav class="white">
+    <div class="nav-wrapper container white">
+      <a href="index.html" id="logo-container" class="brand-logo center">
+        <img class="logo-img" src="images/petted-logo.png" alt="petted">
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" class="nav-link">1-888-888-8888</a></li>
+        <li><a href="#zip" class="nav-link">Book Visit</a></li>
+        <li><a href="#" class="nav-link">Log In</a></li>
+      </ul>
+      <ul id="mobile-demo" class="side-nav">
+        <li><a href="#" class="nav-link">1-888-888-8888</a></li>
+        <li><a href="#zip" class="nav-link">Book Visit</a></li>
+        <li><a href="#" class="nav-link">Log In</a></li>
+      </ul>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons nav-icon">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="search-results">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1 class="header center flow-text">Available Vets In Your Area</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div id="available-vets" class="center-align">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 l6">
+            <h5 class="white-text">Vetted PetCare</h5>
+            <ul id="footer-contact">
+              <li><a href="mailto:hello@vettedpetcare.com">hello@vettedpetcare.com</a></li>
+              <li><a href="tel:18888888888">1-888-888-8888</a></li>
+            </ul>
+          </div>
+          <div class="col s12 l6"></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>
