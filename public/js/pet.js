@@ -239,14 +239,14 @@ function petBreed() {
 function getPetSpecies() {
   localStorage.setItem('userPetSpecies', event.target.dataset.species)
   step++
-  analytics.track('SelectedSpecies', {petSpecies:event.target.dataset.species})
+  analytics.track('SelectedPetSpecies', {petSpecies:event.target.dataset.species})
   showForm(steps[step])
 }
 
 function getPetStatus() {
   localStorage.setItem('userPetStatus', event.target.dataset.status)
   step++
-  analytics.track('SelectedStatus')
+  analytics.track('SelectedPetStatus')
   showForm(steps[step])
 }
 
@@ -270,9 +270,8 @@ function getBreed() {
 
   if (document.querySelector('li.active') !== null) {
     var $petBreed = document.querySelector('li.active').textContent
+    analytics.track('SelectedPetBreed', {petBreed:$petBreed})
     localStorage.setItem('userPetBreed', $petBreed)
-    analytics.track('SelectedPetBreed', $petBreed)
-    window.location.href = 'profile.html'
   }
   else {
     Materialize.toast('Please enter your pet\'s breed.', 4000, 'pink lighten-2 pulse')
@@ -305,6 +304,7 @@ $petForm.addEventListener('click', function(event) {
         break
       case 3:
         getBreed()
+        window.location.href = 'profile.html'
         break
       default:
         step = 0
