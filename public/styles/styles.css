@@ -161,9 +161,14 @@ div.feature-icon img {
   color: #fff;
 }
 
+#vet-result-card {
+  min-height: 25em;
+}
+
 .vet-card-image {
-  margin-top: 0.5rem;
-  max-height: 18em;
+  margin: 1em 0 0 15%;
+  max-height: 14em;
+  max-width: 14em;
 }
 
 .booking-label,
