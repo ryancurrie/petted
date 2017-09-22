@@ -192,19 +192,19 @@ $userForm.addEventListener('focusout', function(event){
   var e = event.srcElement.id
   switch(e) {
     case 'first-name':
-      analytics.track('EnteredFirstName')
+      analytics.track('EnteredFirstName', {userFirstName:localStorage.getItem('userFirstName')})
       break
     case 'last-name':
-      analytics.track('EnteredLastName')
+      analytics.track('EnteredLastName', {userLastName:localStorage.getItem('userLastName')})
       break
     case 'street-address':
-      analytics.track('EnteredAddress')
+      analytics.track('EnteredAddress', {userAddress:localStorage.getItem('userStreetAddress')})
       break
     case 'email':
-      analytics.track('EnteredEmail')
+      analytics.track('EnteredEmail', {userEmail:localStorage.getItem('userEmail')})
       break
     case 'phone-number':
-      analytics.track('EnteredPhone')
+      analytics.track('EnteredPhone', {userPhone:localStorage.getItem('userPhone')})
       break
     default:
   }
