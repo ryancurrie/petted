@@ -1,39 +1,3 @@
-var validZips = ['12345', '11223', '54321']
-
-function search(zip) {
-  for (var i = 0; i < validZips.length; i++) {
-    if (zip === validZips[i]) {
-      window.location.href = 'doctors.html'
-      return
-    }
-    else {
-      window.location.href = 'sorry.html'
-    }
-  }
-}
-
-function getUserZip() {
-  var userZip = document.querySelector('#zip').value
-  localStorage.setItem('userZip', userZip)
-  return userZip
-}
-
-var $checkZip = document.querySelector('#hero-search-button')
-
-$checkZip.addEventListener('click', function(event) {
-  event.preventDefault()
-  search(getUserZip())
-})
-
-var $zipField = document.querySelector('#zip')
-
-$zipField.addEventListener('keypress', function(e){
-  var keyCode = e.keyCode
-  if (keyCode === 13) {
-    search(getUserZip())
-  }
-})
-
 var vets = [
   {
     id: '1',
@@ -121,84 +85,99 @@ var vets = [
   }
 ]
 
-var $vetCarousel = document.querySelector('#vet-carousel')
-$vetCarousel.addEventListener('click', function(event){
-  document.querySelector('#modal-insert').innerHTML = ''
-  var $id = event.target.getAttribute('data-id')
-  modalPopulate($id, vets)
-})
-
-function modalCreate(vet) {
-  var $modal = document.createElement('div')
-  $modal.classList.add('modal-content')
-
-  var $modalImageContainer = document.createElement('div')
-  $modalImageContainer.classList.add('modal-image-container')
-
-  var $vetImage = document.createElement('img')
-  $vetImage.setAttribute('id', 'vet-image')
-  $vetImage.setAttribute('src', vet.image)
-
-  var $modalContentContainer = document.createElement('div')
-  $modalContentContainer.classList.add('modal-content-container')
-
-  var $vetName = document.createElement('h5')
-  $vetName.setAttribute('id', 'vet-name')
-  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
-
-  var $background = document.createElement('h6')
-  $background.classList.add('modal-sub-header')
-  $background.textContent = 'Background'
-
-  var $vetBackground = document.createElement('p')
-  $vetBackground.setAttribute('id', 'vet-background')
-  $vetBackground.textContent = vet.background
-
-  var $education = document.createElement('h6')
-  $education.classList.add('modal-sub-header')
-  $education.textContent = 'Education'
-
-  var $vetSchool = document.createElement('p')
-  $vetSchool.setAttribute('id', 'vet-school')
-  $vetSchool.textContent = 'Veterinary School: ' + vet.vetSchool
-
-  var $undergrad = document.createElement('p')
-  $undergrad.setAttribute('id', 'undergrad')
-  $undergrad.textContent = 'Undergraduate: ' + vet.undergraduate
-
-  var $pets = document.createElement('h6')
-  $pets.classList.add('modal-sub-header')
-  $pets.textContent = 'Pets'
-
-  $modal.appendChild($modalImageContainer)
-  $modal.appendChild($modalContentContainer)
-  $modalImageContainer.appendChild($vetImage)
-  $modalContentContainer.appendChild($vetName)
-  $modalContentContainer.appendChild($background)
-  $modalContentContainer.appendChild($vetBackground)
-  $modalContentContainer.appendChild($education)
-  $modalContentContainer.appendChild($vetSchool)
-  $modalContentContainer.appendChild($undergrad)
-  $modalContentContainer.appendChild($pets)
-
-  for (var i = 0; i < vet.pets.length; i++) {
-    var $petName = vet.pets[i].name
-    var $petDesc = vet.pets[i].description
-    var $pet = document.createElement('p')
-    $pet.textContent = $petName + ': ' + $petDesc
-    $modalContentContainer.appendChild($pet)
-  }
-
-  return $modal
-
-}
-
-function modalPopulate (id, collection) {
-  for (var i = 0; i < vets.length; i++) {
-    if (id === collection[i].id) {
-      var $modalDetails = modalCreate(collection[i])
-      var $modal = document.querySelector('#modal-insert')
-      $modal.appendChild($modalDetails)
+function results(query, options) {
+  var searchResults = []
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].zipsServed.indexOf(query) !== -1) {
+      searchResults.push(options[i])
     }
   }
+  return searchResults
 }
+
+function renderListing(vet) {
+  var $vetCard = document.createElement('div')
+  $vetCard.classList.add('card','col','s12','l4','vet-card','hoverable')
+
+  var $cardImage = document.createElement('div')
+  $cardImage.classList.add('card-image','waves-effect','waves-block','waves-light')
+
+  var $vetImage = document.createElement('img')
+  $vetImage.classList.add('activator','vet-card-image')
+  $vetImage.setAttribute('src', vet.image)
+
+  var $cardContent = document.createElement('div')
+  $cardContent.classList.add('card-content')
+
+  var $vetName = document.createElement('span')
+  $vetName.classList.add('card-title','activator','grey-text','text-darken-4')
+  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+
+  var $btnHolder = document.createElement('p')
+  $btnHolder.classList.add('center')
+
+  var $btn = document.createElement('a')
+  $btn.classList.add('waves-effect','waves-light','btn-large')
+  $btn.setAttribute('data-id', vet.id)
+  $btn.textContent = 'Select'
+
+  var $cardReveal = document.createElement('div')
+  $cardReveal.classList.add('card-reveal')
+
+  var $vetNameReveal = document.createElement('span')
+  $vetNameReveal.classList.add('card-title','activator','grey-text','text-darken-4')
+  $vetNameReveal.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+
+  var $closeIcon = document.createElement('i')
+  $closeIcon.classList.add('material-icons','right')
+  $closeIcon.textContent = 'close'
+
+  var $vetBackground = document.createElement('p')
+  $vetBackground.textContent = vet.background
+
+  var $btnHolderReveal = document.createElement('p')
+  $btnHolderReveal.classList.add('center')
+
+  var $btnReveal = document.createElement('a')
+  $btnReveal.classList.add('waves-effect','waves-light','btn-large')
+  $btnReveal.setAttribute('data-id', vet.id)
+  $btnReveal.textContent = 'Select'
+
+  $vetCard.appendChild($cardImage)
+  $cardImage.appendChild($vetImage)
+  $vetCard.appendChild($cardContent)
+  $cardContent.appendChild($vetName)
+  $cardContent.appendChild($btnHolder)
+  $btnHolder.appendChild($btn)
+  $vetCard.appendChild($cardReveal)
+  $cardReveal.appendChild($vetNameReveal)
+  $cardReveal.appendChild($vetBackground)
+  $cardReveal.appendChild($btnHolderReveal)
+  $btnHolderReveal.appendChild($btnReveal)
+
+  return $vetCard
+}
+
+function showResults(results) {
+  for (i = 0; i < results.length; i++) {
+    var $resultListing = renderListing(results[i])
+    var $listing = document.querySelector('#available-vets')
+    $listing.appendChild($resultListing)
+  }
+
+  analytics.track('BookingViewedDoctors', {countOfResult:document.querySelectorAll('.vet-card').length})
+}
+
+var query = localStorage.getItem('userZip')
+var $results = results(query, vets)
+showResults($results)
+
+var $available = document.querySelector('#available-vets')
+
+$available.addEventListener('click', function(event) {
+  if (event.target.tagName.toLowerCase() === 'a') {
+    var $userVet = event.target.dataset.id
+    localStorage.setItem('userVet', $userVet)
+    window.location.href = 'appointment.html'
+  }
+})

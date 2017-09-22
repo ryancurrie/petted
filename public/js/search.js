@@ -1,3 +1,38 @@
+function search(zip) {
+  for (var i = 0; i < vets.length; i++) {
+    if (vets[i].zipsServed.indexOf(zip) !== -1) {
+      analytics.track('ZipSearch',{zip:localStorage.getItem('userZip')})
+      window.location.href = 'doctors.html'
+      return
+    }
+    else {
+      window.location.href = 'sorry.html'
+    }
+  }
+}
+
+function getUserZip() {
+  var userZip = document.querySelector('#zip').value
+  localStorage.setItem('userZip', userZip)
+  return userZip
+}
+
+var $checkZip = document.querySelector('#hero-search-button')
+
+$checkZip.addEventListener('click', function(event) {
+  event.preventDefault()
+  search(getUserZip())
+})
+
+var $zipField = document.querySelector('#zip')
+
+$zipField.addEventListener('keypress', function(e){
+  var keyCode = e.keyCode
+  if (keyCode === 13) {
+    search(getUserZip())
+  }
+})
+
 var vets = [
   {
     id: '1',
@@ -85,94 +120,84 @@ var vets = [
   }
 ]
 
-function confirmation() {
-  var $confirmation = document.createElement('div')
+var $vetCarousel = document.querySelector('#vet-carousel')
+$vetCarousel.addEventListener('click', function(event){
+  document.querySelector('#modal-insert').innerHTML = ''
+  var $id = event.target.getAttribute('data-id')
+  modalPopulate($id, vets)
+})
 
-  var $row = document.createElement('div')
-  $row.classList.add('row')
+function modalCreate(vet) {
+  var $modal = document.createElement('div')
+  $modal.classList.add('modal-content')
 
-  var $container = document.createElement('div')
-  $container.classList.add('col','s12','l10','offset-l1')
+  var $modalImageContainer = document.createElement('div')
+  $modalImageContainer.classList.add('modal-image-container')
 
-  var $card = document.createElement('div')
-  $card.classList.add('card','horizontal1')
+  var $vetImage = document.createElement('img')
+  $vetImage.setAttribute('id', 'vet-image')
+  $vetImage.setAttribute('src', vet.image)
 
-  var $cardStacked = document.createElement('div')
-  $cardStacked.classList.add('card-stacked')
+  var $modalContentContainer = document.createElement('div')
+  $modalContentContainer.classList.add('modal-content-container')
 
-  var $cardContent = document.createElement('div')
-  $cardContent.classList.add('card-content','flow-text')
-  $cardContent.setAttribute('id', 'appointment-details')
+  var $vetName = document.createElement('h5')
+  $vetName.setAttribute('id', 'vet-name')
+  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
 
-  var $thankYou = document.createElement('p')
-  $thankYou.textContent = 'Thank you '
+  var $background = document.createElement('h6')
+  $background.classList.add('modal-sub-header')
+  $background.textContent = 'Background'
 
-  var $userName = document.createElement('span')
-  $userName.textContent = localStorage.getItem('userFirstName') + ','
+  var $vetBackground = document.createElement('p')
+  $vetBackground.setAttribute('id', 'vet-background')
+  $vetBackground.textContent = vet.background
 
-  var $scheduled = document.createElement('p')
-  $scheduled.textContent = 'Your appointment for '
+  var $education = document.createElement('h6')
+  $education.classList.add('modal-sub-header')
+  $education.textContent = 'Education'
 
-  var $petName = document.createElement('span')
-  $petName.textContent = localStorage.getItem('userPetName') + ' is scheduled for:'
+  var $vetSchool = document.createElement('p')
+  $vetSchool.setAttribute('id', 'vet-school')
+  $vetSchool.textContent = 'Veterinary School: ' + vet.vetSchool
 
-  var $day = document.createElement('p')
-  $day.classList.add('day-time')
-  $day.textContent = localStorage.getItem('userDate')
+  var $undergrad = document.createElement('p')
+  $undergrad.setAttribute('id', 'undergrad')
+  $undergrad.textContent = 'Undergraduate: ' + vet.undergraduate
 
-  var $at = document.createElement('p')
-  $at.textContent = 'at'
+  var $pets = document.createElement('h6')
+  $pets.classList.add('modal-sub-header')
+  $pets.textContent = 'Pets'
 
-  var $time = document.createElement('p')
-  $time.classList.add('day-time')
-  $time.textContent = localStorage.getItem('userTime')
+  $modal.appendChild($modalImageContainer)
+  $modal.appendChild($modalContentContainer)
+  $modalImageContainer.appendChild($vetImage)
+  $modalContentContainer.appendChild($vetName)
+  $modalContentContainer.appendChild($background)
+  $modalContentContainer.appendChild($vetBackground)
+  $modalContentContainer.appendChild($education)
+  $modalContentContainer.appendChild($vetSchool)
+  $modalContentContainer.appendChild($undergrad)
+  $modalContentContainer.appendChild($pets)
 
-  var $cardImage = document.createElement('div')
-  $cardImage.classList.add('card-image')
+  for (var i = 0; i < vet.pets.length; i++) {
+    var $petName = vet.pets[i].name
+    var $petDesc = vet.pets[i].description
+    var $pet = document.createElement('p')
+    $pet.textContent = $petName + ': ' + $petDesc
+    $modalContentContainer.appendChild($pet)
+  }
 
-  var $cardImageHolder = document.createElement('div')
-  $cardImageHolder.classList.add('center')
-  $cardImageHolder.setAttribute('id', 'image-holder')
+  return $modal
 
-  var $image = document.createElement('img')
-  $image.setAttribute('id', 'appointment-image')
-  $image.setAttribute('src', vets[localStorage.getItem('userVet') - 1].image)
-
-  var $vetName = document.createElement('p')
-  $vetName.textContent = 'Dr. ' + vets[localStorage.getItem('userVet') - 1].firstName + ' ' + vets[localStorage.getItem('userVet') - 1].lastName
-
-  var $cardAction = document.createElement('div')
-  $cardAction.classList.add('card-action','center')
-  $cardAction.setAttribute('id', 'return-home')
-
-  var $cardLink = document.createElement('a')
-  $cardLink.setAttribute('href','index.html')
-  $cardLink.textContent = 'Return To Homepage'
-
-  $confirmation.appendChild($row)
-  $row.appendChild($container)
-  $container.appendChild($card)
-  $card.appendChild($cardStacked)
-  $cardStacked.appendChild($cardImage)
-  $cardImage.appendChild($cardImageHolder)
-  $cardImageHolder.appendChild($image)
-  $cardImageHolder.appendChild($vetName)
-  $cardStacked.appendChild($cardContent)
-  $cardContent.appendChild($thankYou)
-  $thankYou.appendChild($userName)
-  $cardContent.appendChild($scheduled)
-  $scheduled.appendChild($petName)
-  $cardContent.appendChild($day)
-  $cardContent.appendChild($at)
-  $cardContent.appendChild($time)
-  $cardStacked.appendChild($cardAction)
-  $cardAction.appendChild($cardLink)
-
-  return $confirmation
 }
 
-function showConfirmation () {
-  document.querySelector('#confirmation').appendChild(confirmation())
+function modalPopulate (id, collection) {
+  for (var i = 0; i < vets.length; i++) {
+    if (id === collection[i].id) {
+      var $modalDetails = modalCreate(collection[i])
+      var $modal = document.querySelector('#modal-insert')
+      $modal.appendChild($modalDetails)
+    }
+  }
 }
-
-showConfirmation()

@@ -85,97 +85,111 @@ var vets = [
   }
 ]
 
-function results(query, options) {
-  var searchResults = []
-  for (var i = 0; i < options.length; i++) {
-    if (options[i].zipsServed.indexOf(query) !== -1) {
-      searchResults.push(options[i])
-    }
-  }
-  return searchResults
-}
+function confirmation() {
+  var $confirmation = document.createElement('div')
 
-function renderListing(vet) {
-  var $vetCard = document.createElement('div')
-  $vetCard.classList.add('card','col','s12','l4','vet-card','hoverable')
+  var $row = document.createElement('div')
+  $row.classList.add('row')
 
-  var $cardImage = document.createElement('div')
-  $cardImage.classList.add('card-image','waves-effect','waves-block','waves-light')
+  var $container = document.createElement('div')
+  $container.classList.add('col','s12','l10','offset-l1')
 
-  var $vetImage = document.createElement('img')
-  $vetImage.classList.add('activator','vet-card-image')
-  $vetImage.setAttribute('src', vet.image)
+  var $card = document.createElement('div')
+  $card.classList.add('card','horizontal1')
+
+  var $cardStacked = document.createElement('div')
+  $cardStacked.classList.add('card-stacked')
 
   var $cardContent = document.createElement('div')
-  $cardContent.classList.add('card-content')
+  $cardContent.classList.add('card-content','flow-text')
+  $cardContent.setAttribute('id', 'appointment-details')
 
-  var $vetName = document.createElement('span')
-  $vetName.classList.add('card-title','activator','grey-text','text-darken-4')
-  $vetName.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+  var $thankYou = document.createElement('p')
+  $thankYou.textContent = 'Thank you '
 
-  var $btnHolder = document.createElement('p')
-  $btnHolder.classList.add('center')
+  var $userName = document.createElement('span')
+  $userName.textContent = localStorage.getItem('userFirstName') + ','
 
-  var $btn = document.createElement('a')
-  $btn.classList.add('waves-effect','waves-light','btn-large')
-  $btn.setAttribute('data-id', vet.id)
-  $btn.textContent = 'Select'
+  var $scheduled = document.createElement('p')
+  $scheduled.textContent = 'Your appointment for '
 
-  var $cardReveal = document.createElement('div')
-  $cardReveal.classList.add('card-reveal')
+  var $petName = document.createElement('span')
+  $petName.textContent = localStorage.getItem('userPetName') + ' is scheduled for:'
 
-  var $vetNameReveal = document.createElement('span')
-  $vetNameReveal.classList.add('card-title','activator','grey-text','text-darken-4')
-  $vetNameReveal.textContent = 'Dr. ' + vet.firstName + ' ' + vet.lastName
+  var $day = document.createElement('p')
+  $day.classList.add('day-time')
+  $day.textContent = localStorage.getItem('userDate')
 
-  var $closeIcon = document.createElement('i')
-  $closeIcon.classList.add('material-icons','right')
-  $closeIcon.textContent = 'close'
+  var $at = document.createElement('p')
+  $at.textContent = 'at'
 
-  var $vetBackground = document.createElement('p')
-  $vetBackground.textContent = vet.background
+  var $time = document.createElement('p')
+  $time.classList.add('day-time')
+  $time.textContent = localStorage.getItem('userTime')
 
-  var $btnHolderReveal = document.createElement('p')
-  $btnHolderReveal.classList.add('center')
+  var $cardImage = document.createElement('div')
+  $cardImage.classList.add('card-image')
 
-  var $btnReveal = document.createElement('a')
-  $btnReveal.classList.add('waves-effect','waves-light','btn-large')
-  $btnReveal.setAttribute('data-id', vet.id)
-  $btnReveal.textContent = 'Select'
+  var $cardImageHolder = document.createElement('div')
+  $cardImageHolder.classList.add('center')
+  $cardImageHolder.setAttribute('id', 'image-holder')
 
-  $vetCard.appendChild($cardImage)
-  $cardImage.appendChild($vetImage)
-  $vetCard.appendChild($cardContent)
-  $cardContent.appendChild($vetName)
-  $cardContent.appendChild($btnHolder)
-  $btnHolder.appendChild($btn)
-  $vetCard.appendChild($cardReveal)
-  $cardReveal.appendChild($vetNameReveal)
-  $cardReveal.appendChild($vetBackground)
-  $cardReveal.appendChild($btnHolderReveal)
-  $btnHolderReveal.appendChild($btnReveal)
+  var $image = document.createElement('img')
+  $image.setAttribute('id', 'appointment-image')
+  $image.setAttribute('src', vets[localStorage.getItem('userVet') - 1].image)
 
-  return $vetCard
+  var $vetName = document.createElement('p')
+  $vetName.textContent = 'Dr. ' + vets[localStorage.getItem('userVet') - 1].firstName + ' ' + vets[localStorage.getItem('userVet') - 1].lastName
+
+  var $cardAction = document.createElement('div')
+  $cardAction.classList.add('card-action','center')
+  $cardAction.setAttribute('id', 'return-home')
+
+  var $cardLink = document.createElement('a')
+  $cardLink.setAttribute('href','index.html')
+  $cardLink.textContent = 'Return To Homepage'
+
+  $confirmation.appendChild($row)
+  $row.appendChild($container)
+  $container.appendChild($card)
+  $card.appendChild($cardStacked)
+  $cardStacked.appendChild($cardImage)
+  $cardImage.appendChild($cardImageHolder)
+  $cardImageHolder.appendChild($image)
+  $cardImageHolder.appendChild($vetName)
+  $cardStacked.appendChild($cardContent)
+  $cardContent.appendChild($thankYou)
+  $thankYou.appendChild($userName)
+  $cardContent.appendChild($scheduled)
+  $scheduled.appendChild($petName)
+  $cardContent.appendChild($day)
+  $cardContent.appendChild($at)
+  $cardContent.appendChild($time)
+  $cardStacked.appendChild($cardAction)
+  $cardAction.appendChild($cardLink)
+
+  return $confirmation
 }
 
-function showResults(results) {
-  for (i = 0; i < results.length; i++) {
-    var $resultListing = renderListing(results[i])
-    var $listing = document.querySelector('#available-vets')
-    $listing.appendChild($resultListing)
-  }
+function showConfirmation () {
+  document.querySelector('#confirmation').appendChild(confirmation())
+  analytics.track('BookingComplete',
+   {
+     userVet: localStorage.getItem('userVet'),
+     userFirstName: localStorage.getItem('userFirstName'),
+     userLastName: localStorage.getItem('userLastName'),
+     userEmail: localStorage.getItem('userEmail'),
+     userPhone: localStorage.getItem('userPhone'),
+     userZip: localStorage.getItem('userZip'),
+     userAddress: localStorage.getItem('userStreetAddress'),
+     userPetName: localStorage.getItem('userPetName'),
+     userPetSpecies: localStorage.getItem('userPetSpecies'),
+     PetBreed: localStorage.getItem('userPetBreed'),
+     PetAge: localStorage.getItem('userPetAge'),
+     appointmentDate: localStorage.getItem('userDate'),
+     appointmentTime: localStorage.getItem('userTime')
+   })
+   analytics.indenify(localStorage.getItem('ajs_anonymous_id'))
 }
 
-var query = localStorage.getItem('userZip')
-var $results = results(query, vets)
-showResults($results)
-
-var $available = document.querySelector('#available-vets')
-
-$available.addEventListener('click', function(event) {
-  if (event.target.tagName.toLowerCase() === 'a') {
-    var $userVet = event.target.dataset.id
-    localStorage.setItem('userVet', $userVet)
-    window.location.href = 'appointment.html'
-  }
-})
+showConfirmation()

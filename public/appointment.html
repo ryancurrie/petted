@@ -7,6 +7,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
   <link rel="stylesheet" href="styles/styles.css">
   <title>Petted VetCare</title>
 
@@ -39,16 +40,32 @@
     </div>
   </nav>
 
-
-  <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <h1 class="header center flow-text">Enter Your Information</h1>
+  <div id="appointment">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1 class="header center flow-text">When would you like your appointment?</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label class="booking-label" for="date">Appointment Date</label>
+          <input type="text" id="date" class="datepicker">
+       </div>
+        <div id="apt-at">
+          <span>at</span>
+        </div>
+        <div>
+          <label class="booking-label" for="date">Appointment Time</label>
+          <input type="text" id="time" class="timepicker">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 center">
+          <a id="appointment-next" href="#" class="waves-effect waves-light btn-large">Next</a>
+        </div>
       </div>
     </div>
-
-    <div id="user-info"></div>
-
   </div>
 
   <div id="footer">
@@ -72,6 +89,6 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/profile.js"></script>
+  <script src="js/appointment.js"></script>
 </body>
 </html>

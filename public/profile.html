@@ -7,6 +7,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
   <link rel="stylesheet" href="styles/styles.css">
   <title>Petted VetCare</title>
 
@@ -39,18 +40,16 @@
     </div>
   </nav>
 
-  <div id="search-results">
-    <div class="container">
-      <div class="row">
-        <div class="col s12">
-          <h1 class="header center flow-text">Available Vets In Your Area</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div id="available-vets" class="center-align">
-        </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h1 class="header center flow-text">Enter Your Information</h1>
       </div>
     </div>
+
+    <div id="user-info"></div>
+
   </div>
 
   <div id="footer">
@@ -69,10 +68,11 @@
       </div>
     </footer>
   </div>
+
   <!-- Scripts -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/results.js"></script>
+  <script src="js/profile.js"></script>
 </body>
 </html>

@@ -158,6 +158,7 @@ function userInfo() {
 
 function showForm() {
   $('select').material_select()
+  analytics.track('BookingViewedProfile')
   document.querySelector('#user-info').appendChild(userInfo())
 }
 
@@ -167,21 +168,44 @@ var $userForm = document.querySelector('#user-info')
 
 $userForm.addEventListener('input', function(event){
   var e = event.srcElement.id
+  var target = event.target.value
   switch(e) {
     case 'first-name':
-      localStorage.setItem('userFirstName', event.target.value)
+      localStorage.setItem('userFirstName', target)
       break
     case 'last-name':
-      localStorage.setItem('userLastName', event.target.value)
+      localStorage.setItem('userLastName', target)
       break
     case 'street-address':
-      localStorage.setItem('userStreetAddress', event.target.value)
+      localStorage.setItem('userStreetAddress', target)
       break
     case 'email':
-      localStorage.setItem('userEmail', event.target.value)
+      localStorage.setItem('userEmail', target)
       break
     case 'phone-number':
-      localStorage.setItem('userPhone', event.target.value)
+      localStorage.setItem('userPhone', target)
+    default:
+  }
+})
+
+$userForm.addEventListener('focusout', function(event){
+  var e = event.srcElement.id
+  switch(e) {
+    case 'first-name':
+      analytics.track('EnteredFirstName')
+      break
+    case 'last-name':
+      analytics.track('EnteredLastName')
+      break
+    case 'street-address':
+      analytics.track('EnteredAddress')
+      break
+    case 'email':
+      analytics.track('EnteredEmail')
+      break
+    case 'phone-number':
+      analytics.track('EnteredPhone')
+      break
     default:
   }
 })
@@ -220,3 +244,21 @@ function getClasses(id) {
   var classArray = Array.from(domTokens)
   return classArray
 }
+
+function sendToSegment () {
+   analytics.track(
+     'SubmittedForm',
+     {
+       email:localStorage.getItem('userEmail'),
+       firstName:localStorage.getItem('userFirstName'),
+       lastName:localStorage.getItem('userLastName'),
+       streetAddress:localStorage.getItem('userStreetAddress'),
+       zip:localStorage.getItem('userZip'),
+       phone:localStorage.getItem('userPhone'),
+       vet:localStorage.getItem('userVet'),
+       petName:localStorage.getItem('userPetName'),
+       petSpecies:localStorage.getItem('userPetSpecies'),
+       petStatus:localStorage.getItem('userPetStatus'),
+       petAge:localStorage.getItem('userPetAge')
+     })
+ }
