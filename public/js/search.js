@@ -122,6 +122,7 @@ var vets = [
 
 var $vetCarousel = document.querySelector('#vet-carousel')
 $vetCarousel.addEventListener('click', function(event){
+  event.preventDefault()
   document.querySelector('#modal-insert').innerHTML = ''
   var $id = event.target.getAttribute('data-id')
   modalPopulate($id, vets)
