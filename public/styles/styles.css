@@ -81,7 +81,7 @@ div.feature-icon img {
   width: 66%;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 400px) {
   #testimonial-text {
     width: 100%;
   }
@@ -97,10 +97,10 @@ div.feature-icon img {
   text-align: right;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 400px) {
   #testimonial-user {
     float: none;
-    margin-top: 50%;
+    margin-top: 20%;
     text-align: center;
   }
 }
@@ -161,9 +161,14 @@ div.feature-icon img {
   color: #fff;
 }
 
+#vet-result-card {
+  min-height: 25em;
+}
+
 .vet-card-image {
-  margin-top: 0.5rem;
-  max-height: 18em;
+  margin: 1em 0 0 15%;
+  max-height: 14em;
+  max-width: 14em;
 }
 
 .booking-label,

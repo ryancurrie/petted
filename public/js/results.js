@@ -98,6 +98,7 @@ function results(query, options) {
 function renderListing(vet) {
   var $vetCard = document.createElement('div')
   $vetCard.classList.add('card','col','s12','l4','vet-card','hoverable')
+  $vetCard.setAttribute('id', 'vet-result-card')
 
   var $cardImage = document.createElement('div')
   $cardImage.classList.add('card-image','waves-effect','waves-block','waves-light')
