@@ -178,6 +178,7 @@ $available.addEventListener('click', function(event) {
   if (event.target.tagName.toLowerCase() === 'a') {
     var $userVet = event.target.dataset.id
     localStorage.setItem('userVet', $userVet)
+    analytics.track('SelectedDoctor', {userVet:$userVet})
     window.location.href = 'appointment.html'
   }
 })

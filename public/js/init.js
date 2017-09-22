@@ -67,7 +67,7 @@ window.onbeforeunload = function () {
  }
 
 function cartAbandon() {
-  if (window.location.pathname === '/doctors.html' || '/pet.html' || '/appointment.html' || '/profile.html') {
+  if (window.location.pathname === '/doctors' || window.location.pathname === '/appointment.html' || window.location.pathname === '/pet.html' || window.location.pathname === '/profile.html') {
     analytics.track('CartAbandon', {
       userVet: localStorage.getItem('userVet'),
       userFirstName: localStorage.getItem('userFirstName'),
